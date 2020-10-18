@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Friend Groups</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script>
+		    $(function() {
+		        $.ajax({
+		            url: '/getFriendGroups',
+		            type: 'GET',
+		            success: function(res) {
+		            	console.log(res);
+		            	var div = $('<div style="margin: 10px 10px 10px 10px; padding: 10px; border: black 1px solid">')
+						    .attr('class', 'group-list')
+						    .append($('<a>')
+						        .attr('class', 'group-list-item active')
+						        .append($('<h4>')
+            						.attr('class', 'group-list-item-fullname'),
+            						$('<p>')
+	            					.attr('class','group-list-item-description'
+	            							)));
+						var nameObj = JSON.parse(res);
+						//console.log(nameObj)
+						var name = '';
+						$.each(nameObj, function(index, value) {
+						    name = $(div).clone();
+						    $(name).find('h4').text(value.fg_name)
+						    $(name).find('p').text(value.description)
+						    $('.grouplistcontainer').append(name);
+						});
+		            },
+		            error: function(error) {
+		                console.log(error);
+		            }
+		        });
+		    });
+		</script>
+	</head>
+	<h1>PriCoSha</h1>
+	<body>
+		<p style="color:Red;">{{name}} {{message}}</p>
+		<br/>
+		<button onclick="window.location='/userHome'">Back</button>
+		<button onclick="window.location='/showAddFriendGroup'">Create a Friend Group</button>
+		<button onclick="window.location='/showAddFriend'">Add a Friend</button>
+		<button onclick="window.location='/showAddBestFriend'">Add a Best Friend</button>
+		<button onclick="window.location='/showDefriend'">Defriend</button>
+		<button onclick="window.location='/showRemoveFriendGroup'">Leave a Friend Group</button>
+		<hr>
+		<h3>Friend Groups:</h3>
+		<p>You will see their posts!</p>
+		<div class="grouplistcontainer" style='margin:25px 25px 25px 25px; border:1px black; padding:10px'>
+			<div class="group-list">
+				<a class='group-list-item active'>
+					<h4 class="group-list-item-fullname"></h4>
+					<p class="group-list-item-description"></p>
+				</a>
+			</div>
+		</div>
+	</body>
+</html>

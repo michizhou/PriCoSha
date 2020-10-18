@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>PriCoSha Add Friend Groups!</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script src="addFriendGroup.js"></script>
+	</head>
+	<body>
+		<h1>PriCoSha</h1>
+		<button onclick="window.location='/friendGroups'">Back</button>
+		<hr>
+		<h3>Create a Friend Group!</h3>
+		<p>You get to share your posts with your group!</p>
+		<p style="color:Red;">{{message}}</p>
+		<form action='/addFriendGroup' method="post">
+			<br/>
+			<p>Enter Friend Group name:</p>
+			<input type="text" name="friendGroup" id="friendGroup" required="" placeholder="Friend Group Name" />
+			<br/>
+			<p>Enter Friend Group description:</p>
+			<textarea type="text" name="friendGroupDes" id="friendGroupDes" required="" placeholder="Friend Group Description here"></textarea>
+			<br/>
+			<button onclick="window.location='/friendGroups'">Cancel</button>
+			<input id='addFriendGroupBttn' type="submit" value="Create Group">
+		</form>
+	</body>
+</html>

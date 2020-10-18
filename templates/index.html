@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>PriCoSha Homepage</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script>
+		    $(function() {
+		        $.ajax({
+		            url: '/getPublicContent',
+		            type: 'GET',
+		            success: function(res) {
+		            	console.log(res);
+		            	if (res){
+			            	var div = $('<div style="margin: 10px 10px 10px 10px; padding: 10px; border: black 1px solid">')
+							    .attr('class', 'content')
+							    .append($('<a>')
+							        .attr('class', 'content-item active')
+							        .append($('<h3>')
+							            .attr('class', 'content-item-title'),
+							            $('<p>')
+	            						.attr('class', 'content-item-owner'),
+	            						$('<p2>')
+	            						.attr('class','content-item-body'
+	            							)));
+							var contObj = JSON.parse(res);
+							console.log(contObj)
+							var content = '';
+							$.each(contObj, function(index, value) {
+							    content = $(div).clone();
+							    $(content).find('h3').text(value.item_name)
+							    $(content).find('p').text('by '+value.fname+' '+value.lname+' on '+value.post_time)
+							    $(content).find('p2').text(value.file_path)
+							    $('.content-container').append(content);
+							});
+		            	}
+		        		else{
+		        			console.log(res);
+		        		}
+		        	},
+		            error: function(error) {
+		                console.log(error);
+		            }
+		        });
+		    });
+		</script>
+	</head>
+	<body>
+		<h1>PriCoSha</h1>
+		<p style="color:Red;">{{message}}</p>
+		<button onclick="window.location='/showSignUp'">Sign Up</button><t/>
+		<button onclick="window.location='/showLogIn'">Log In</button>
+		<hr>
+		<h3>Public Posts</h3>
+		<div class="content-container">
+			<div class="content">
+					<a class='content-item active'>
+						<h3 class="content-item-title"></h3>
+						<p class="content-item-owner"></p>
+						<p2 class="content-item-image"></p2>
+					</a>
+			</div>
+		</div>
+	</body>
+</html>

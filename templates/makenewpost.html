@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>PriCoShaMake a New Post</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script src="addContent.js"></script>
+	</head>
+	<body>
+		<h1>PriCoSha</h1>
+		<button onclick="window.location='/'">Back</button>
+		<hr>
+		<h3>Make a New Post</h3>
+		<p style="color:Red;">{{message}}</p>
+		<form action='/addContent' method="post">
+			<br/>
+			<input type="text" name="title" id="title" required="" placeholder="Post Title"/>
+			<br/>
+			<textarea rows="2" cols="20" name="body" id="body" required="" placeholder="Enter filepath here"></textarea>
+			<br/>
+			<label for="public">Make this post public: </label>
+			<input type="checkbox" name="public" id="public" value="true">
+			<br/>
+			<button onclick="window.location='/userHome'">Cancel</button>
+			<input id='addContentBttn' type="submit" value="Post" />
+		</form>
+	</body>
+
+</html>

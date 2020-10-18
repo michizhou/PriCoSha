@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Best Friends</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script>
+		    $(function() {
+		        $.ajax({
+		            url: '/getBestFriends',
+		            type: 'GET',
+		            success: function(res) {
+		            	console.log(res);
+		            	var div = $('<div>')
+						    .attr('class', 'name-list')
+						    .append($('<a>')
+						        .attr('class', 'name-list-item active')
+						        .append($('<p>')
+            						.attr('class', 'name-list-item-fullname')));
+						var nameObj = JSON.parse(res);
+						//console.log(nameObj)
+						var name = '';
+						$.each(nameObj, function(index, value) {
+						    name = $(div).clone();
+						    $(name).find('p').text(value.fname+' '+value.lname)
+						    $('.namelistcontainer').append(name);
+						});
+		            },
+		            error: function(error) {
+		                console.log(error);
+		            }
+		        });
+		    });
+		</script>
+	</head>
+	<h1>PriCoSha</h1>
+	<body>
+		<p style="color:Red;">{{name}} {{message}}</p>
+		<br/>
+		<button onclick="window.location='/userHome'">Back</button>
+		<button onclick="window.location='/showAddBestFriend'">Add Best Friends</button>
+		<button onclick="window.location='/showDeleteBestFriend'">Delete Best Friends</button>
+		<hr>
+		<h3>Best Friends:</h3>
+		<p>Add people from  Friend Groups you own to your Best Friends!</p>
+		<p>You will see their posts at the top of your feed first!</p>
+		<div class="namelistcontainer" style='margin:25px 25px 25px 25px; border:1px black; padding:10px'>
+			<div class="name-list">
+				<a class='name-list-item active'>
+					<p class="name-list-item-fullname"></p>
+				</a>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>PriCoSha Add Best Friends!</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script src="deleteBestie.js"></script>
+	</head>
+	<body>
+		<h1>PriCoSha</h1>
+		<button onclick="window.location='/'">Back</button>
+		<hr>
+		<h3>Delete a Best Friend</h3>
+		<p style="color:Red;">{{message}}</p>
+		<form action='/deleteBestFriend' method="post">
+			<br />
+			<label for="bestieEmail">Enter the Best Friend's email:</label>
+			<input type="email" name="bestieEmail" id="bestieEmail" required="" placeholder="Best Friend's Email" />
+			<br/>
+			<button onclick="window.location='/bestFriends'">Cancel</button>
+			<input id='addBestieBttn' type="submit" value="Remove">
+		</form>
+	</body>
+</html>
